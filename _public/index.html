@@ -1,0 +1,111 @@
+<html>
+  <head>
+
+        <script type="text/javascript">
+          var wsUri = "ws://localhost:8080/websocket";
+      function init()
+      {
+        websocket = new WebSocket(wsUri);
+        websocket.onclose = function(evt) { onClose(evt) };
+      }
+      function onClose(evt)
+      {
+        console.log('closing');
+        websocket.close();
+        document.location.reload();
+      }
+      window.addEventListener("load", init, false);
+      </script>
+            <meta charSet="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>
+      Michal's ramblings
+    </title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/style/style.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/monokai.min.css"/>
+    <script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+    <script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/languages/fsharp.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <span class="navbar-burger burger" data-target="navbarMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <div id="navbarMenu" class="navbar-menu">
+          <a class="navbar-item is-active" href="/">
+            Home
+          </a>
+          <a class="navbar-item" href="/about.html">
+            About
+          </a>
+        </div>
+      </div>
+    </nav>
+    <section class="hero is-primary is-medium is-bold">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title">
+            
+          </h1>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <section class="articles">
+        <div class="column is-8 is-offset-2">
+          <article class="box article">
+            <img class="author-image" src="/images/author.png"/>
+            <div class="block has-text-centered">
+              <p class="title article-title">
+                <a href="/posts/introduction.html">
+                  Introduction
+                </a>
+              </p>
+              
+              <p class="subtitle is-6 article-subtitle">
+                <a href="/about.html">
+                  @emneb
+                </a>
+                on 2022-12-06
+              </p>
+              <span class="tag is-primary">
+                general
+              </span>
+            </div>
+            <div class="content article-body">
+              <p>Hi there. This is the first entry on this new blog site of mine.</p>
+<p>I'll try to document here some things that I have learned, heard, discovered, or have an occational hot take on. Fair warning, though: it will most probably all be very silly and useless.</p>
+<p>Oh, right: mostly about programming, F#, and general .NET. Probably. We'll see.</p>
+
+            </div>
+            <div class="block"></div>
+            <nav class="level">
+              <div class="level-left"></div>
+              <div class="level-right">
+                <p class="level-item is-primary">
+                  <a href="/posts/introduction.html">
+                    read more
+                  </a>
+                </p>
+              </div>
+            </nav>
+          </article>
+        </div>
+      </section>
+    </div>
+    <div class="container">
+      <div class="container has-text-centered"></div>
+    </div>
+    <script src="/js/nav.js"></script>
+  </body>
+</html>
