@@ -57,8 +57,8 @@ let layout (ctx : SiteContents) active bodyCnt =
             // link [Rel "stylesheet"; Href "https://unpkg.com/bulmaswatch/minty/bulmaswatch.min.css"]
             link [Rel "stylesheet"; Type "text/css"; Href "/style/style.css"]
             link [Rel "stylesheet"; Href "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/base16/atelier-heath-light.min.css"]
-            script [Src "//unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js" ] [ ]
-            script [Src "//unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/fsharp.min.js" ] [ ]
+            script [Src "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" ] [ ]
+            script [Src "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/fsharp.min.js" ] [ ]
             script [] [ !! "hljs.highlightAll();" ]
         ]
         body [] [
