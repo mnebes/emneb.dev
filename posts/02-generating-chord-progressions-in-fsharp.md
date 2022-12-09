@@ -13,7 +13,7 @@ Recently, I discovered a very nice blog post by Leo Cavalcante about trying to c
 
 ### A Short Disclaimer
 
-The first thing to note is the definition of "Music Theory" that I'm applying here. For many Westerners, the "rules of music" that we learned or heard about are treated as *The* Music Theory. As many may suspect though, there are no iron-clad rules to music. Globally, you can see countless examples of music that does not adhere to this golden standard of "how music works". Adam Neely made an excellent video about this: [Music Theory and White Supremacy](https://www.youtube.com/watch?v=Kr3quGh7pJA) and suggests a more fitting name: "The harmonic style of 18th-century European musicians." All this to say that while I will be using some terminology that comes from that style, mainly because this is the one that I (very roughly) understand, it is only *one way* of approaching the topic.
+The first thing to note is the definition of "Music Theory" that I'm applying here. For many Westerners, the "rules of music" that we learned or heard about are treated as *The* Music Theory. As many may suspect though, there are no iron-clad rules to music. Globally, you can see countless examples of music that does not adhere to this golden standard of "how music works". Adam Neely made an excellent video about this: [Music Theory and White Supremacy](https://www.youtube.com/watch?v=Kr3quGh7pJA) and suggests a more fitting name might be: "The harmonic style of 18th-century European musicians." All this to say that, while I will be using some terminology that comes from that style, it is mainly because that's the one that I (very roughly) understand, not because it is *the way* of approaching the topic.
 
 ___
 
@@ -24,13 +24,13 @@ Some definitions first. I'm by no means a music theorist, but for this post let'
 - The sound spectrum is continuous, but we subdivide it into discrete steps: notes.
 - Pitch is essentially a frequency of a sound. For example, it is agreed that the "middle A" pitch is 440 Hz.
 - Sound is governed by the [harmonic series](https://en.wikipedia.org/wiki/Harmonic_series_(music)). In the Western (and some other) traditions we give a sound the same name (note) every time the frequency doubles. This is called an **octave**.
-- For convenience, we decided to divide an octave into 12 equal parts, thus giving us 12 notes in an octave. The distance between those notes is a **semitone**.
+- For convenience, we decided to divide an octave into 12 equal parts, thus giving us 12 notes in an octave. The distance between these notes is a **semitone**.
 > Sidenote: This is actually a quite recent invention and is called [12-tone equal temperament or 12TET](https://en.wikipedia.org/wiki/12_equal_temperament).
 - If a set of notes is played simultaneously we call it a **chord**
 - A scale is essentially just a set of notes (traditionally ascending in pitch).
 - A **key** tone is the "main" tone of a scale. The center to which everything seems to gravitate towards.
 
-Finally, knowing all that, what is a chord progression? It's as simple as it sounds: a sequence of chords, that is notes played together. In and of themselves there is not much interesting about chord progressions. However, with time we noticed that some chords sound particularly "good" or "right" after some other chords. This is apparent in a lot of western classical, pop, or jazz music. A "one-four-five" is one such common progression, and a "two-five" is another. When practicing an instrument or as a starting point for some more creative endeavor like composing it might be nice to be able to generate any progression in any key and tell some program to play it, so this is what I set out to do.
+Finally, knowing all that, what is a chord progression? It's as simple as it sounds: a sequence of chords, that is notes played together. In and of itself there is not much interesting about chord progressions. However, with time we noticed that some chords sound particularly "good" or "right" after some other chords. This is apparent in a lot of western classical, pop, or jazz music. A "one-four-five" is one such common progression, and a "two-five" is another. When practicing an instrument or as a starting point for some more creative endeavor like composing it might be nice to be able to generate any progression in any key and tell some program to play it, so this is what we'll try to do.
 
 ## Laying out the basics
 
@@ -52,7 +52,7 @@ type Note =
     | B
 ```
 
-As you can see some of the notes are named more complexly than others. The base set of note names is a sequence of `C D E F G A B` (think white keys of the piano). The notes in between (the black keys) are denoted by either decreasing the pitch of one note i.e. flattening e.g. E -> Eb or increasing it i.e. sharpening e.g. F -> F#. Eb and F# are *enharmonically equivalent* which means they produce the same sound.
+As you can see some of the notes are named more complexly than others. The base set of note names is a sequence of `C D E F G A B` (think white keys of the piano). The notes in-between (the black keys) are denoted by either decreasing the pitch of one note i.e. flattening it e.g. E -> Eb or increasing i.e. sharpening it e.g. F -> F#. Eb and F# are *enharmonically equivalent* which means they produce the same sound.
 
 > Note: It wasn't always like this, the equivalence holds only in 12TET and historically they were different pitches (as dictated by the harmonic series), but we are now here and are stuck with this notation.
 
@@ -76,11 +76,11 @@ To represent chords we can choose one of 2 approaches:
 - as collections of notes
 - as sort of "recipes" encoding how to construct the chord, knowing a starting point.
 
-Representing a chord as a collection of notes is straightforward. However, complications start once you want to operate further on the chords eg. add extensions, transpose to another key, make a minor into a major, etc. Thus, it is better, in the long run, to represent chords as relations between chord elements. Concretely, let's represent a chord as a set of intervals from its root i.e. its "main note".
+Representing a chord as a collection of notes is straightforward. However, complications start once you want to operate further on the chords e.g. add extensions, transpose to another key, make a minor into a major, etc. Thus, it is better, in the long run, to represent chords as relations between chord elements. Concretely, let's represent a chord as a set of distances from its root i.e. its "main note".
 
-Intervals in music theory are names given to distances between notes. These distances are usually measured in semitones.
+These distances are called **intervals** and were also given names. They are usually measured in semitones.
 
-> Note: some intervals function under multiple names. The name is dependent on the way an interval was created i.e. was it naturally occurring in a scale or was some other interval increased or decreased and so a Minor Third can sometimes be called an Augmented Second. I've included them as this terminology is actively used by musicians.
+> Note: some intervals function under multiple names. The name is dependent on the way an interval was created i.e. was it naturally occurring in a scale or was some other interval increased or decreased. That's why a Minor Third can sometimes be called an Augmented Second. I've included them as well as this terminology is actively used by musicians.
 
 ```fsharp
 type Interval =
@@ -148,9 +148,7 @@ module Interval =
 
 ## Chords
 
-Having defined the intervals we can proceed to the definition of a chord. I've decided to define a chord as a combination of a **root note** and a list of intervals relative to this root. An alternative would be to represent a chord by intervals building on top of each other forming a chain of sorts. This would however deviate a bit from how musicians tend to reason about chords.
-
-
+Having defined the intervals we can proceed to the definition of a chord. Since we've decided to define a chord as a combination of a **root note** and a list of intervals relative to this root, our chord could be represented as follows:
 
 ```fsharp
 type Chord = { Root: Note; IntervalsFromRoot: Interval list }
@@ -271,7 +269,7 @@ type HarmonicFunction =
     | VII  // Leading tone
 ```
 
-An example progression that we are interested in would be a `I-IV-V-I` i.e. tetrachords built on top of the first, fourth, fifth, and first (again) steps of a scale.
+An example progression that we are interested in would be a `I-IV-V-I` i.e. tetrachords built on top of the first, fourth, fifth, and first (again) steps of a scale. To build a chord on a scale we need to only use the notes that are in the scale. This means that if we are building a triad and a third from its root happens to be a Minor Third, then our chord will be minor or diminished (depending on what kind of Fifth we will get from our scale).
 
 First, we need a function that builds a tetrachord from a given step of a given scale.
 
@@ -385,9 +383,9 @@ ___
 
 ## Bonus: let's listen to it!
 
-Being able to generate these progressions is a nice exercise but unless we can listen to them somehow it is still of limited value. Here's where [Sonic Pi][sonicpi] comes in. It is a music creation tool that is code-based, which makes it a natural fit for our use case here.
+Being able to generate these progressions is a nice exercise, but unless we can listen to them somehow it is still of limited value. Here's where [Sonic Pi][sonicpi] comes in. It is a music creation tool that is code-based, which makes it a natural fit for our use case here.
 
-In a basic scenario to play a note in Sonic Pi one has to write a `play` command, followed by the desired note. Additionally, we should attach a number denoting which octave we want the note to be played in. For example, the command to play the "middle A" would be `play :A4`. The `play` command can also take a collection of notes to play, which is exactly what we need to play some chords! Let's add some functions to help us print a series of commands for Sonic PI based on our chord progression:
+In a basic scenario to play a note in Sonic Pi one has to write a `play` command, followed by the desired note. Additionally, we should attach a number denoting which octave we want the note to be played in. For example, the command to play the "middle A" would be `play :A4`. The `play` command can also take a collection of notes to play (`play [:Fs4,:As4,:Cs5,:F5]`), which is exactly what we need to play some chords! Let's add some functions to help us print a series of commands for Sonic PI based on our chord progression:
 
 ```fsharp
 module SonicPi =
