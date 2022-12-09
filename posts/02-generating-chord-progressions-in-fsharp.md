@@ -11,9 +11,11 @@ Recently, I discovered a very nice blog post by Leo Cavalcante about trying to c
 
 <!--more-->
 
-## Music Theory
+### A Short Disclaimer
 
 The first thing to note is the definition of "Music Theory" that I'm applying here. For many Westerners, the "rules of music" that we learned or heard about are treated as *The* Music Theory. As many may suspect though, there are no iron-clad rules to music. Globally, you can see countless examples of music that does not adhere to this golden standard of "how music works". Adam Neely made an excellent video about this: [Music Theory and White Supremacy](https://www.youtube.com/watch?v=Kr3quGh7pJA) and suggests a more fitting name: "The harmonic style of 18th-century European musicians." All this to say that while I will be using some terminology that comes from that style, mainly because this is the one that I (very roughly) understand, it is only *one way* of approaching the topic.
+
+___
 
 ## Notes, Chords, Scales, Progressions, oh my!
 
@@ -375,6 +377,8 @@ let ``I-IV-V-I`` = Harmony.buildTetrachordProgression FsGb Scales.minor [I; IV; 
 *)
 ```
 
+___
+
 ## Bonus: let's listen to it!
 
 Being able to generate these progressions is a nice exercise but unless we can listen to them somehow it is still of limited value. Here's where [Sonic Pi][sonicpi] comes in. It is a music creation tool that is code-based, which makes it a natural fit for our use case here.
@@ -438,6 +442,8 @@ And here is how it sounds:
 Your browser does not support the audio element.
 </audio>
 
+___
+
 ## Summary
 
 I hope you enjoyed this journey through music theory and F#. The code I wrote here is far from elegant/optimal but I found trying to fit all those concepts into code very enjoyable. I would still like to continue adding new features to make this more flexible and powerful. From the top of my head this would be things like:
@@ -445,9 +451,12 @@ I hope you enjoyed this journey through music theory and F#. The code I wrote he
 - Requesting a specific type of chord for a harmonic function: for example specifying V to be the dominant seventh chord regardless of what the scale would suggest (specifying `V7` instead of `V`).
 - Chord substitutions: e.g. replace a chord in a progression with a 2-5 that resolves to that chord (jazz reharmonization)
 - Reverse chord identification: a set of Active Patterns to identify whether a chord is Minor, Major, etc.
-- and so on!
+- Drop the bass note by an octave or two.
+- Support chord inversions.
+- and more!
 
 You can find all the code from here in this [gist](https://gist.github.com/mnebes/8cfe529467cfd62ed500bb2ac8b57255). Feel free to play with it!
 
+___
 
 [sonicpi]: https://sonic-pi.net/
