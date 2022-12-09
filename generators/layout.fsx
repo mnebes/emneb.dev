@@ -45,7 +45,7 @@ let layout (ctx : SiteContents) active bodyCnt =
             a [Class cls; Href p.link] [!! p.title ])
         |> Seq.toList
 
-    html [] [
+    html [ Lang "en" ] [
         head [] [
             meta [CharSet "utf-8"]
             meta [Name "viewport"; Content "width=device-width, initial-scale=1"]
@@ -56,9 +56,9 @@ let layout (ctx : SiteContents) active bodyCnt =
             link [Rel "stylesheet"; Href "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"]
             // link [Rel "stylesheet"; Href "https://unpkg.com/bulmaswatch/minty/bulmaswatch.min.css"]
             link [Rel "stylesheet"; Type "text/css"; Href "/style/style.css"]
-            link [Rel "stylesheet"; Href "https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/monokai.min.css"]
-            script [Src "//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js" ] [ ]
-            script [Src "//unpkg.com/@highlightjs/cdn-assets@11.6.0/languages/fsharp.min.js" ] [ ]
+            link [Rel "stylesheet"; Href "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/base16/atelier-heath-light.min.css"]
+            script [Src "//unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js" ] [ ]
+            script [Src "//unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/fsharp.min.js" ] [ ]
             script [] [ !! "hljs.highlightAll();" ]
         ]
         body [] [
@@ -81,6 +81,7 @@ let render (ctx : SiteContents) cnt =
     let disableLiveRefresh = ctx.TryGetValue<Postloader.PostConfig> () |> Option.map (fun n -> n.disableLiveRefresh) |> Option.defaultValue false
     cnt
     |> HtmlElement.ToString
+    |> sprintf "<!DOCTYPE html>\n%s"
     |> fun n -> if disableLiveRefresh then n else injectWebsocketCode n
 
 let published (post: Postloader.Post) =
@@ -91,7 +92,7 @@ let published (post: Postloader.Post) =
 let postLayout (useSummary: bool) (post: Postloader.Post) =
     article [Class "box article"] [
 
-        img [Class "author-image"; Src "/images/author.png"]
+        //img [Class "author-image"; Src "/images/author.png"]
         div [Class "block has-text-centered"] [
             p [Class "title article-title"; ] [ a [Href post.link] [!! post.title]]
             match post.subtitle with
