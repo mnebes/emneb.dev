@@ -263,7 +263,8 @@ module Scales =
         let indexOfRoot = Seq.findIndex (fun note -&gt; note = key) tones
         let _, notes =
             List.fold
-                (fun (interval, notes) value -&gt; interval+value, Seq.item (indexOfRoot + interval + value) tones :: notes)
+                (fun (interval, notes) value -&gt;
+                    interval+value, Seq.item (indexOfRoot + interval + value) tones :: notes)
                 (0,[key])
                 scale
         List.rev (List.tail notes)
@@ -302,13 +303,15 @@ module Scales =
         let indexOfRoot = Seq.findIndex (fun note -&gt; note = key) tones
         let _, notes =
             List.fold
-                (fun (interval, notes) value -&gt; interval+value, (Seq.item (indexOfRoot + interval + value) tones, value) :: notes)
+                (fun (interval, notes) value -&gt;
+                    interval+value, (Seq.item (indexOfRoot + interval + value) tones, value) :: notes)
                 (0,[key, scale[indexOfRoot]])
                 scale
         List.rev (List.tail notes)
 
     // helper function to turn a scale into an infinite sequence
-    let private infinite (scale: _ list) = Seq.initInfinite (fun i -&gt; scale[i % scale.Length])
+    let private infinite (scale: _ list) =
+        Seq.initInfinite (fun i -&gt; scale[i % scale.Length])
 
     //
     let buildTetrachord key scale harmonicFunction =
@@ -363,7 +366,8 @@ module Scales =
 *)
 </code></pre>
 <p>This has created a progression of F#maj7-&gt;Bmaj7-&gt;C#7-&gt;F#maj7. If we want to create an analogous progression but in minor, it's as easy as changing the scale and we get a progression of F#m7-&gt;Bm7-&gt;C#m7-&gt;F#m7.</p>
-<pre><code class="language-fsharp">let ``I-IV-V-I`` = Harmony.buildTetrachordProgression FsGb Scales.minor [I; IV; V; I]
+<pre><code class="language-fsharp">let ``I-IV-V-I`` =
+    Harmony.buildTetrachordProgression FsGb Scales.minor [I; IV; V; I]
 (*
     Results in
     val ``I-IV-V-I`` : Chord list =
@@ -406,7 +410,8 @@ module Scales =
     let printChordProgression stepDuration chords =
         chords
         |&gt; List.map printChord
-        |&gt; List.map (fun chord -&gt; $&quot;{chord}, release: {stepDuration}{Environment.NewLine}sleep {stepDuration}&quot;)
+        |&gt; List.map (fun chord -&gt;
+            $&quot;{chord}, release: {stepDuration}{Environment.NewLine}sleep {stepDuration}&quot;)
         |&gt; fun chords -&gt; String.Join(Environment.NewLine, chords)
 </code></pre>
 <p>Let's convert our chord progression to the Sonic Pi commands and paste it to a <code>live_loop</code> in Sonic Pi.</p>
