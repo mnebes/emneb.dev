@@ -11,6 +11,8 @@ Recently, I discovered a very nice blog post by Leo Cavalcante about trying to c
 
 <!--more-->
 
+> By a fortunate conincidence it turns out this is not the only post about this topic in this year's advent calendar! Be sure to check out Christophe Moinard's great series on [Music Theory in F#](https://cmoinard.github.io/2022/12/11/fsharp-music-theory-00-introduction.html)!
+
 ### A Short Disclaimer
 
 The first thing to note is the definition of "Music Theory" that I'm applying here. For many Westerners, the "rules of music" that we learned or heard about are treated as *The* Music Theory. As many may suspect though, there are no iron-clad rules to music. Globally, you can see countless examples of music that does not adhere to this golden standard of "how music works". Adam Neely made an excellent video about this: [Music Theory and White Supremacy](https://www.youtube.com/watch?v=Kr3quGh7pJA) and suggests a more fitting name might be: "The harmonic style of 18th-century European musicians." All this to say that, while I will be using some terminology that comes from that style, it is mainly because that's the one that I (very roughly) understand, not because it is *the way* of approaching the topic.
