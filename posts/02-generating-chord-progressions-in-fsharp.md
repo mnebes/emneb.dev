@@ -11,7 +11,7 @@ Recently, I discovered a very nice blog post by Leo Cavalcante about trying to c
 
 <!--more-->
 
-> By a fortunate conincidence it turns out this is not the only post about this topic in this year's advent calendar! Be sure to check out Christophe Moinard's great series on [Music Theory in F#](https://cmoinard.github.io/2022/12/11/fsharp-music-theory-00-introduction.html)!
+> By a fortunate coincidence, it turns out this is not the only post about this topic in this year's advent calendar! Be sure to check out Christophe Moinard's great series on [Music Theory in F#](https://cmoinard.github.io/2022/12/11/fsharp-music-theory-00-introduction.html)!
 
 ### A Short Disclaimer
 
